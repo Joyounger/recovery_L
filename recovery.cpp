@@ -164,6 +164,8 @@ fopen_path(const char *path, const char *mode) {
 }
 
 static void redirect_stdio(const char* filename) {
+	//freopen用来重定向文件流，经常重定向stdin、stdout、stderr
+	//可以在freopen后用setbuf设置文件缓冲区为NULL.
     // If these fail, there's not really anywhere to complain...
     freopen(filename, "a", stdout); setbuf(stdout, NULL);
     freopen(filename, "a", stderr); setbuf(stderr, NULL);
@@ -895,7 +897,7 @@ int
 main(int argc, char **argv) {
     time_t start = time(NULL);
 
-    redirect_stdio(TEMPORARY_LOG_FILE);
+    redirect_stdio(TEMPORARY_LOG_FILE); //将stdout和stderr重定向到文件/tmp/recovery.log
 
     // If this binary is started with the single argument "--adbd",
     // instead of being the normal recovery binary, it turns into kind
