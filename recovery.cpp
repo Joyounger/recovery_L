@@ -914,7 +914,7 @@ main(int argc, char **argv) {
     printf("Starting recovery (pid %d) on %s", getpid(), ctime(&start));
 
     load_volume_table();
-    ensure_path_mounted(LAST_LOG_FILE);
+    ensure_path_mounted(LAST_LOG_FILE); //确保last_log文件的路径被挂载上
     rotate_last_logs(KEEP_LOG_COUNT);
     get_args(&argc, &argv);
 
